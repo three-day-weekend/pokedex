@@ -4,6 +4,8 @@ import PokeList from './PokeList.js';
 import api from '../services/api.js';
 import Loading from './Loading.js';
 import Search from './Search.js';
+import Paging from './Paging.js';
+
 import hashStorage from '../hash-storage.js';
 
 class App extends Component {
@@ -23,10 +25,13 @@ class App extends Component {
         const search = new Search();
         const searchDOM = search.render();
 
+        const paging = new Paging();
+        const pagingDOM = paging.render();
+
         dom.prepend(headerDOM);
         main.appendChild(loadingDOM);
-
         main.appendChild(searchDOM);
+        main.appendChild(pagingDOM);
         main.appendChild(pokeListDOM);
 
         function loadPokemon() {
