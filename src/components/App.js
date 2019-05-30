@@ -2,7 +2,7 @@ import Component from './Component.js';
 import Header from './Header.js';
 import PokeList from './PokeList.js';
 import api from '../services/api.js';
-
+import Loading from './Loading.js';
 
 class App extends Component {
     render() {
@@ -15,13 +15,22 @@ class App extends Component {
         const pokeList = new PokeList({ pokemon: [] });
         const pokeListDOM = pokeList.render();
 
+        const loading = new Loading({ done: false });
+        const loadingDOM = loading.render();
+
         dom.prepend(headerDOM);
+        main.appendChild(loadingDOM);
         main.appendChild(pokeListDOM);
 
         function loadPokemon() {
+            loading.update({ done: false });
+            
             api.getPokemon()
                 .then(pokemon => {
                     pokeList.update({ pokemon: pokemon.results });
+                })
+                .finally(() => {
+                    loading.update({ done: true });
                 });
         }
 
