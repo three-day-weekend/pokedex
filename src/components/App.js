@@ -3,6 +3,7 @@ import Header from './Header.js';
 import PokeList from './PokeList.js';
 import api from '../services/api.js';
 import Loading from './Loading.js';
+import Search from './Search.js';
 
 class App extends Component {
     render() {
@@ -18,8 +19,13 @@ class App extends Component {
         const loading = new Loading({ done: false });
         const loadingDOM = loading.render();
 
+        const search = new Search();
+        const searchDOM = search.render();
+
         dom.prepend(headerDOM);
         main.appendChild(loadingDOM);
+
+        main.appendChild(searchDOM);
         main.appendChild(pokeListDOM);
 
         function loadPokemon() {

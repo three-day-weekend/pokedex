@@ -1,4 +1,4 @@
-const URL = 'https://cors-anywhere.herokuapp.com/alchemy-pokedex.herokuapp.com/api/pokedex';
+const URL = 'https://alchemy-pokedex.herokuapp.com/api/pokedex';
 
 const api = {
     getPokemon() {

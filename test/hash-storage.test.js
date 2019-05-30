@@ -1,26 +1,8 @@
-import QUERY from '../src/QUERY.js';
+import hashStorage from '../src/hash-storage.js';
+
 const test = QUnit.test;
 
 QUnit.module('Hash Storage');
-
-const hashStorage = {
-    get() {
-        const hash = window.location.hash.slice(1);
-        return QUERY.parse(hash);
-    },
-
-    set(queryProps) {
-        const target = hashStorage.get();
-        Object.assign(target, queryProps);
-        window.location.hash = QUERY.stringify(target);
-    },
-
-    remove(key) {
-        const target = hashStorage.get();
-        delete target[key];
-        window.location.hash = QUERY.stringify(target);
-    }
-};
 
 test('reads window location hash as object', assert => {
     // arrange
