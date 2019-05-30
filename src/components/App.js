@@ -4,6 +4,7 @@ import PokeList from './PokeList.js';
 import api from '../services/api.js';
 import Loading from './Loading.js';
 import Search from './Search.js';
+import hashStorage from '../hash-storage.js';
 
 class App extends Component {
     render() {
@@ -30,8 +31,9 @@ class App extends Component {
 
         function loadPokemon() {
             loading.update({ done: false });
-            
-            api.getPokemon()
+            const queryProps = hashStorage.get();
+
+            api.getPokemon(queryProps)
                 .then(pokemon => {
                     pokeList.update({ pokemon: pokemon.results });
                 })
@@ -41,6 +43,10 @@ class App extends Component {
         }
 
         loadPokemon();
+
+        window.addEventListener('hashchange', () => {
+            loadPokemon();
+        });
 
         return dom;
     }
