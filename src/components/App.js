@@ -1,6 +1,7 @@
 import Component from './Component.js';
 import Header from './Header.js';
 import PokeList from './PokeList.js';
+import api from '../services/api.js';
 
 
 class App extends Component {
@@ -11,11 +12,20 @@ class App extends Component {
         const header = new Header();
         const headerDOM = header.render();
 
-        const pokeList = new PokeList();
+        const pokeList = new PokeList({ pokemon: [] });
         const pokeListDOM = pokeList.render();
 
         dom.prepend(headerDOM);
         main.appendChild(pokeListDOM);
+
+        function loadPokemon() {
+            api.getPokemon()
+                .then(pokemon => {
+                    pokeList.update({ pokemon: pokemon.results });
+                });
+        }
+
+        loadPokemon();
 
         return dom;
     }

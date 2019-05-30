@@ -1,22 +1,22 @@
 import Component from './Component.js';
+import PokeItem from './PokeItem.js';
 
 class PokeList extends Component {
-    renderTemplate(){
+    render() {
+        const dom = this.renderDOM();
+        const pokemon = this.props.pokemon;
+
+        pokemon.forEach(poke => {
+            const pokeItem = new PokeItem({ pokemon: poke });
+            const pokeItemDOM = pokeItem.render();
+            dom.appendChild(pokeItemDOM);
+        });
+        
+        return dom;
+    }
+    renderTemplate() {
         return /*html*/ `
-            <ul>
-                <li>
-                    <h2>venusaur</h2>
-                    <img src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png" alt="venusaur">
-                </li>
-                <li>
-                    <h2>bulbasaur</h2>
-                    <img src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png" alt="bulbasaur">
-                </li>
-                <li>
-                    <h2>venusaur-mega</h2>
-                    <img src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/003_f2.png" alt="venusaur-mega">
-                </li>
-            </ul>
+            <ul></ul>
         `;
     }
 }
