@@ -11,6 +11,7 @@ class Search extends Component {
             const queryProps = {
                 pokemon: input.value
             };
+            queryProps.page = 1;
             hashStorage.set(queryProps);
         });
 
@@ -19,7 +20,10 @@ class Search extends Component {
         });
 
         function setInputFromHash() {
-            input.value = hashStorage.get().pokemon;
+            const pokemon = hashStorage.get().pokemon;
+            if(pokemon) {
+                input.value = pokemon;
+            }
         }
 
         setInputFromHash();
