@@ -8,6 +8,10 @@ class Paging extends Component {
         const prevButton = dom.querySelector('.prev');
         const nextButton = dom.querySelector('.next');
 
+        if(!prevButton) {
+            return dom;
+        }
+
         function updatePage(change) {
             const queryProps = hashStorage.get();
             let page = queryProps.page ? parseInt(queryProps.page) : 1;
@@ -29,6 +33,13 @@ class Paging extends Component {
     renderTemplate() {
         const currentPage = parseInt(this.props.currentPage);
         const totalPages = parseInt(this.props.totalPages);
+        const totalResults = parseInt(this.props.totalResults);
+
+        if(!totalResults) {
+            return /*html*/`
+                <p>No search results, try again</p>
+            `;
+        }
         return /*html*/ `
             <section>
                 <button class="prev" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>
