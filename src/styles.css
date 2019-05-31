@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy%7CVT323&display=swap');
+
+body {
+    font-family: 'VT323', monospace;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3em;
+}
