@@ -2,8 +2,10 @@
 
 body {
     font-family: 'VT323', monospace;
+    text-align: center;
 }
 
 h1 {
     font-family: 'Luckiest Guy', cursive;
+    font-size: 3em;
 }

@@ -1,6 +1,14 @@
 import Component from './Component.js';
 
 class PokeItem extends Component {
+    render() {
+        const dom = this.renderDOM();
+
+        const color = this.props.pokemon.color_1;
+        dom.style.backgroundColor = color;
+
+        return dom;
+    }
     renderTemplate(){
         const pokemon = this.props.pokemon;
         return /*html*/ `
