@@ -25,7 +25,7 @@ class App extends Component {
         const search = new Search();
         const searchDOM = search.render();
 
-        const paging = new Paging();
+        const paging = new Paging({ totalPages: 0, currentPage: 1 });
         const pagingDOM = paging.render();
 
         dom.prepend(headerDOM);
@@ -40,7 +40,10 @@ class App extends Component {
 
             api.getPokemon(queryProps)
                 .then(pokemon => {
+                    const totalPages = Math.ceil(pokemon.count / pokemon.perPage);
+                    const currentPage = pokemon.page;
                     pokeList.update({ pokemon: pokemon.results });
+                    paging.update({ totalPages, currentPage });
                 })
                 .finally(() => {
                     loading.update({ done: true });

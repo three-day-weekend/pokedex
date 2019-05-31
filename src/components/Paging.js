@@ -27,11 +27,13 @@ class Paging extends Component {
     }
 
     renderTemplate() {
+        const currentPage = parseInt(this.props.currentPage);
+        const totalPages = parseInt(this.props.totalPages);
         return /*html*/ `
             <section>
-                <button class="prev">Prev</button>
-                <span>x page of y</span>
-                <button class="next">Next</button>
+                <button class="prev" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>
+                <span>${currentPage} page of ${totalPages}</span>
+                <button class="next" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
             </section>
         `;
     }
